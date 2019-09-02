@@ -10,7 +10,7 @@ $client = new Client(['base_uri' => 'https://www.cliquefarma.com.br/preco/']);
 $crawler = new Crawler();
 
 $priceSeeker = new PriceSeeker($client, $crawler);
-$prices = $priceSeeker->seek('7899026437210TEST');
+$prices = $priceSeeker->seek('7899026437210');
 
 var_dump($prices);
 
