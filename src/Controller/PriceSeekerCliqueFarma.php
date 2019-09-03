@@ -1,11 +1,14 @@
 <?php
 
-namespace KassioSchaider\PriceStalker;
+namespace KassioSchaider\PriceStalker\Controller;
+
+use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DomCrawler\Crawler;
 
-class PriceSeeker
+class PriceSeekerCliqueFarma implements InterfaceSeeker
+
 {
     /**
      * @var ClientInterface
@@ -16,24 +19,24 @@ class PriceSeeker
      */
     private $crawler;
 
-    public function __construct(ClientInterface $httpClient, Crawler $crawler)
+    public function __construct()
     {
-        $this->httpClient = $httpClient;
-        $this->crawler = $crawler;
+        $this->httpClient = new Client(['base_uri' => 'https://www.cliquefarma.com.br/preco/']);
+        $this->crawler = new Crawler();
     }
 
-    public function seek(string $url) : array
+    public function seek(string $barCode) : array
     {
         try {
-            $response = $this->httpClient->request('GET', $url);
+            $response = $this->httpClient->request('GET', $barCode);
         } catch (GuzzleException $e) {
             echo "Site inacessível.";
         }
         $html = $response->getBody();
         $this->crawler->addHtmlContent($html);
 
-        //$unitPrices = $this->crawler->filter('p.title-1.color-10.preco-oferta2.inline');
-        $unitPrices = $this->crawler->filter('figcaption.no-margin-bt.xs-size');
+        $unitPrices = $this->crawler->filter('p.title-1.color-10.preco-oferta2.inline');
+        //$unitPrices = $this->crawler->filter('figcaption.no-margin-bt.xs-size');
         $prices = [];
 
         foreach ($unitPrices as $unitPrice) {

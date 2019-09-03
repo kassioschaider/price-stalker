@@ -1,7 +1,7 @@
 <?php
 
 
-namespace KassioSchaider\PriceStalker;
+namespace KassioSchaider\PriceStalker\Entity;
 
 
 class Store
