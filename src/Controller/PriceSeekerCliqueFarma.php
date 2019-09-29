@@ -10,6 +10,7 @@ use Symfony\Component\DomCrawler\Crawler;
 class PriceSeekerCliqueFarma implements InterfaceSeeker
 
 {
+    const selectorprice = 'p.title-1.color-10.preco-oferta2.inline';
     /**
      * @var ClientInterface
      */
@@ -35,7 +36,7 @@ class PriceSeekerCliqueFarma implements InterfaceSeeker
         $html = $response->getBody();
         $this->crawler->addHtmlContent($html);
 
-        $unitPrices = $this->crawler->filter('p.title-1.color-10.preco-oferta2.inline');
+        $unitPrices = $this->crawler->filter(self::selectorprice);
         //$unitPrices = $this->crawler->filter('figcaption.no-margin-bt.xs-size');
         $prices = [];
 

@@ -26,8 +26,6 @@ class Product
      * @Column(type="float")
      */
     private $myPrice;
-    private $lastPricesFound;
-    private $previousPricesFound;
 
     /**
      * @return mixed
@@ -85,36 +83,9 @@ class Product
         $this->myPrice = $myPrice;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLastPricesFound()
+    public function __toString()
     {
-        return $this->lastPricesFound;
-    }
-
-    /**
-     * @param mixed $lastPricesFound
-     */
-    public function setLastPricesFound($lastPricesFound)
-    {
-        $this->lastPricesFound = $lastPricesFound;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPreviousPricesFound()
-    {
-        return $this->previousPricesFound;
-    }
-
-    /**
-     * @param mixed $previousPricesFound
-     */
-    public function setPreviousPricesFound($previousPricesFound)
-    {
-        $this->previousPricesFound = $previousPricesFound;
+        return $this->id . ' - ' . $this->barCode . ' - ' . $this->name . ' - ' . $this->myPrice;
     }
 
 }
