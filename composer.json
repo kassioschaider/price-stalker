@@ -12,7 +12,8 @@
         "guzzlehttp/guzzle": "^6.3",
         "symfony/dom-crawler": "^4.3",
         "symfony/css-selector": "^4.3",
-        "doctrine/orm": "^2.6"
+        "doctrine/orm": "^2.6",
+        "doctrine/migrations": "^2.1"
     },
     "autoload": {
         "psr-4": {
